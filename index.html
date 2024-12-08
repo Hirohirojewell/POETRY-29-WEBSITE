@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEWELL</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #001f3f, #004080, #66ccff);
+            color: #fff;
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            overflow-y: auto; /* Allow scrolling on the page */
+        }
+
+        .container {
+            max-width: 500px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .letter, .prayer {
+            width: 300px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .letter:hover, .prayer:hover {
+            transform: scale(1.1);
+        }
+
+        .poem-container, .prayer-container {
+            display: none;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        .poem {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #fff8e1;
+            margin: 0;
+        }
+
+        .poem p, .prayer-container p {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .prayer-container {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            color: #333;
+        }
+
+        .prayer-container h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #004080;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #66ccff;
+            padding-bottom: 10px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #004080;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .back-button:hover {
+            background: #66ccff;
+        }
+
+        .christmas-gif-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            width: 100%;
+            max-height: 400px; /* Limit height if the GIF is large */
+            overflow: hidden; /* Hide overflow */
+        }
+
+        .christmas-gif {
+            width: auto;
+            height: auto;
+            max-width: 100%; /* Responsive width */
+            max-height: 100%;
+            object-fit: contain; /* Adjust the GIF to fit within the container */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Initial Letter -->
+        <img src="picture2.jpg" alt="Letter" class="letter" id="letter1">
+        
+        <!-- Opened Letter -->
+        <img src="picture1.jpg" alt="Letter Opened" class="letter" id="letter2" style="display: none;">
+        <button class="back-button" id="backToLetter1" style="display: none;">Back</button>
+        
+        <!-- Poem -->
+        <div class="poem-container" id="poem">
+            <p>Beneath the glow of twinkling lights,</p>
+            <p>We danced through cold December nights.</p>
+            <p>Each snowflake kissed your rosy cheeks,</p>
+            <p>A love so pure, no words could speak.</p>
+
+            <p>Amid the cheer of carol chimes,</p>
+            <p>Our hearts entwined through wintertime.</p>
+            <p>Your warmth defied December’s chill,</p>
+            <p>A magic only love could fill.</p>
+
+            <p>Under mistletoe, we found our bliss,</p>
+            <p>The sweetest gift, our first soft kiss.</p>
+            <p>And in your arms, the world felt bright,</p>
+            <p>A perfect love on Christmas night.</p>
+
+            <p>So here I stand, a vow to make,</p>
+            <p>This love will never bend nor break.</p>
+            <p>Through every season, far or near,</p>
+            <p>I’ll hold you close, my Christmas dear.</p>
+        </div>
+        <button class="back-button" id="backToLetter2" style="display: none;">Back</button>
+
+        <!-- Christmas GIF Container -->
+        <div class="christmas-gif-container" id="christmasGifContainer" style="display: none;">
+            <img src="christmas.gif" alt="Christmas GIF" class="christmas-gif">
+        </div>
+
+        <!-- Prayer -->
+        <div class="prayer-container" id="prayer">
+            <h2>Prayer</h2>
+            <p>Heavenly Father,</p>
+            <p>Thank You for the gift of love we share,</p>
+            <p>For the warmth that fills our hearts this Christmas.</p>
+            <p>May this season strengthen our bond,</p>
+            <p>And fill our lives with peace and joy.</p>
+
+            <p>Let us grow together in faith and kindness,</p>
+            <p>Guided by Your light through all our days.</p>
+            <p>In Your holy name, Amen.</p>
+        </div>
+        <button class="back-button" id="backToGif" style="display: none;">Back</button>
+    </div>
+
+    <script>
+        const letter1 = document.getElementById('letter1');
+        const letter2 = document.getElementById('letter2');
+        const poemContainer = document.getElementById('poem');
+        const christmasGifContainer = document.getElementById('christmasGifContainer');
+        const prayerContainer = document.getElementById('prayer');
+
+        const backToLetter1 = document.getElementById('backToLetter1');
+        const backToLetter2 = document.getElementById('backToLetter2');
+        const backToGif = document.getElementById('backToGif');
+
+        // First click to switch letter images
+        letter1.addEventListener('click', () => {
+            letter1.style.display = 'none';
+            letter2.style.display = 'block';
+            backToLetter1.style.display = 'inline-block';
+        });
+
+        // Back to letter1
+        backToLetter1.addEventListener('click', () => {
+            letter1.style.display = 'block';
+            letter2.style.display = 'none';
+            backToLetter1.style.display = 'none';
+        });
+
+        // Second click to reveal the poem
+        letter2.addEventListener('click', () => {
+            letter2.style.display = 'none';
+            poemContainer.style.display = 'block';
+            christmasGifContainer.style.display = 'flex';
+            backToLetter2.style.display = 'inline-block';
+        });
+
+        // Back to letter2
+        backToLetter2.addEventListener('click', () => {
+            letter2.style.display = 'block';
+            poemContainer.style.display = 'none';
+            christmasGifContainer.style.display = 'none';
+            backToLetter2.style.display = 'none';
+        });
+
+        // Click on the GIF to reveal the prayer
+        christmasGifContainer.addEventListener('click', () => {
+            christmasGifContainer.style.display = 'none';
+            prayerContainer.style.display = 'block';
+            backToGif.style.display = 'inline-block';
+        });
+
+        // Back to GIF
+        backToGif.addEventListener('click', () => {
+            christmasGifContainer.style.display = 'flex';
+            prayerContainer.style.display = 'none';
+            backToGif.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
